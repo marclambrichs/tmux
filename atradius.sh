@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Setup a work space called `atradius`
 #
@@ -19,7 +19,11 @@
 session="Atradius"
 
 # Set up tmux, start server
-tmux start
+if [[ -n $(pgrep tmux) ]]; then
+    echo "tmux server already running..."
+else
+    tmux start
+fi
 
 # Check if tmux already has session $session
 tmux has-session -t $session
